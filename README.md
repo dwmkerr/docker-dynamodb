@@ -35,13 +35,13 @@ The Dockerfile is based on [OpenJDK](https://hub.docker.com/_/openjdk/) and esse
 
 ## The Makefile
 
-The makefile contains commands to build, test and deploy.
+The makefile contains commands to build, test and deploy. Parameters can be passed as environment variables or through the commandline.
 
 | Command                  | Notes                             |
 |--------------------------|-----------------------------------|
 | `make build`             | Builds the image `dwmkerr/dynamodb:latest`. If a `BUILD_NUM` parameter is provided, also builds `dwmkerr/dynamodb:BUILD_NUM`. |
 | `make test`              | Runs the test scripts. |
-| `make deploy`            | Deploys the images to the docker hub. If you are not logged in, your gonna have a bad time. |
+| `make deploy`            | Deploys the images to the docker hub. If you are not logged in, you're gonna have a bad time. |
 
 ## The Tests
 

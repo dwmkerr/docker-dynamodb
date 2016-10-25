@@ -1,0 +1,25 @@
+machine:
+  # NOTE: The below *should* work. However, CicleCI use unpriviledged LXC containers
+  # and this causes issues. Installing docker from a specific build below is a manual
+  # workaround.
+  # 
+  # See: https://discuss.circleci.com/t/docker-1-9-1-is-available/1009
+  # 
+  pre:
+   - sudo curl -L -o /usr/bin/docker 'https://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci'
+   - sudo chmod 0755 /usr/bin/docker
+  services:
+  - docker
+  environment:
+	# Set the build number, used in makefiles.
+    BUILD_NUM: $CIRCLE_BUILD_NUM
+
+test:
+  override:
+	- make test
+
+deployment:
+  master:
+    branch: master
+    commands:
+      - make deploy
