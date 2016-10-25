@@ -15,8 +15,7 @@ machine:
     BUILD_NUM: $CIRCLE_BUILD_NUM
 
 test:
-  override:
-	- make test
+  override: make test
 
 deployment:
   master:
