@@ -14,6 +14,9 @@ machine:
     # Set the build number, used in makefiles.
     BUILD_NUM: $CIRCLE_BUILD_NUM
 
+dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install httpie jq 
 test:
   override:
     - make test

@@ -15,7 +15,7 @@ FROM openjdk:7
 MAINTAINER Dave Kerr, github.com/dwmkerr
 
 # Create our main application folder.
-RUN mkdir /opt; mkdir /opt/dynamodb
+RUN mkdir -p opt/dynamodb
 WORKDIR /opt/dynamodb
 
 # Download and unpack dynamodb.
