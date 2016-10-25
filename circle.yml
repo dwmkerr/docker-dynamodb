@@ -11,11 +11,12 @@ machine:
   services:
   - docker
   environment:
-	# Set the build number, used in makefiles.
+    # Set the build number, used in makefiles.
     BUILD_NUM: $CIRCLE_BUILD_NUM
 
 test:
-  override: make test
+  override:
+    - make test
 
 deployment:
   master:

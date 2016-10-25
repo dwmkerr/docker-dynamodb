@@ -49,8 +49,10 @@ VILLAIN_NAME=$(aws dynamodb --endpoint-url http://localhost:8000 \
     --table-name Supervillains \
     | jq '.Items[0].name.S')
 
-if [ "$VILLAIN_NAME" != "The Monarch" ]; then
-    echo "Failed to find the villain 'The Monarch', found $VILLAIN_NAME."
+if [[ "$VILLAIN_NAME" =~ Monarch ]]; then
+    echo "Searched for a villain and found $VILLAIN_NAME!"
+else
+    echo "Searched foud 'Monarch' but found $VILLAIN_NAME, failing test."
     exit 1
 fi
 
