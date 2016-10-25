@@ -3,7 +3,7 @@ set -e
 
 # Kill any running dynamodb containers.
 echo "Cleaning up old containers..."
-docker ps -a | grep dwmkerr/dynamodb | awk '{print $1}' | xargs docker rm -f
+docker ps -a | grep dwmkerr/dynamodb | awk '{print $1}' | xargs docker rm -f  || true
 
 # Run the container.
 echo "Checking we can run the container..."

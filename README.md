@@ -1,11 +1,9 @@
-# docker-dynamodb
+# docker-dynamodb [![CircleCI](https://circleci.com/gh/dwmkerr/docker-dynamodb.svg?style=svg)](https://circleci.com/gh/dwmkerr/docker-dynamodb)
 
-It's DynamoDB - in Docker!
-
-Running DynamoDB locally can be a bit of a pain, package managers may not have the latest versions, you need to download, extract, run Java etc etc. Instead, just run:
+Run DynamoDB locally with Docker:
 
 ```bash
-docker run -it dwmkerr/dynamodb
+docker run -p 8000:8000 dwmkerr/dynamodb
 ```
 
 Any arguments you pass go straight to DynamoDB, which means you can use all of the commandline parameters in the [DynamoDB Documentation](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html).
@@ -17,6 +15,12 @@ Basic operation, default parameters. Runs in memory on port 8000:
 
 ```bash
 docker run dwmkerr/dynamodb
+```
+
+If you want to have persistent data, just mount a volume from your host:
+
+```bash
+docker run -v /data:/data dwmkerr/dynamodb -dbPath /data
 ```
 
 # Coding
