@@ -6,7 +6,7 @@ else
 	docker build -t dwmkerr/dynamodb:$(BUILD_NUM) .	
 endif
 
-test:
+test: build
 	./test/basics.test.sh
 	./test/ephemeral.test.sh
 	./test/persistent.test.sh

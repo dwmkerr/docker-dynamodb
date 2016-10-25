@@ -9,7 +9,7 @@ docker ps -a | grep dwmkerr/dynamodb | awk '{print $1}' | xargs docker rm -f  ||
 DATADIR=/tmp/dynamodbdata
 rm -rf $DATADIR; mkdir $DATADIR
 echo "Created temporary data directory: $DATADIR"
-ID=$(docker run -d -p8000:8000 -v $DATADIR:/data/ dwmkerr/dynamodb -dbPath /data/)
+ID=$(docker run -d -p 8000:8000 -v $DATADIR:/data/ dwmkerr/dynamodb -dbPath /data/)
 sleep 2
 
 # Create a table.

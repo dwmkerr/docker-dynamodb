@@ -7,7 +7,7 @@ docker ps -a | grep dwmkerr/dynamodb | awk '{print $1}' | xargs docker rm -f  ||
 
 # Run the container.
 echo "Checking we can run the container..."
-ID=$(docker run -d -p8000:8000 dwmkerr/dynamodb)
+ID=$(docker run -d -p 8000:8000 dwmkerr/dynamodb)
 sleep 2
 
 # Create a table.

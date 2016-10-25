@@ -14,13 +14,15 @@ Any arguments you pass go straight to DynamoDB, which means you can use all of t
 Basic operation, default parameters. Runs in memory on port 8000:
 
 ```bash
-docker run dwmkerr/dynamodb
+docker run -p 8000:8000 dwmkerr/dynamodb
 ```
+
+DynamoDB is now running on port 8000, check [localhost:8000/shell](http://localhost:8000) to see the shell.
 
 If you want to have persistent data, just mount a volume from your host:
 
 ```bash
-docker run -v /data:/data dwmkerr/dynamodb -dbPath /data
+docker run -v /data:/data -p 8000:8000 dwmkerr/dynamodb -dbPath /data
 ```
 
 # Coding
