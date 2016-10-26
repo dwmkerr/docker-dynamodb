@@ -18,8 +18,9 @@ aws dynamodb --endpoint-url http://localhost:8000 \
 	--key-schema AttributeName=name,KeyType=HASH \
 	--provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
 
+# Clean up the container. On CircleCI the FS is BTRFS, so this might fail...
 echo "Stopping and restarting..."
-docker stop $ID && docker rm $ID
+docker stop $ID && docker rm $ID || true
 ID=$(docker run -d -p8000:8000 dwmkerr/dynamodb)
 sleep 2
 
