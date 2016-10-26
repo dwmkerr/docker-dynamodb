@@ -1,5 +1,7 @@
 # docker-dynamodb [![CircleCI](https://circleci.com/gh/dwmkerr/docker-dynamodb.svg?style=svg)](https://circleci.com/gh/dwmkerr/docker-dynamodb)
 
+[![Docker Hub Badge](http://dockeri.co/image/dwmkerr/dynamodb)](https://registry.hub.docker.com/u/dwmkerr/dynamodb/)
+
 Run DynamoDB locally with Docker:
 
 ```bash
