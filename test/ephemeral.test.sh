@@ -21,7 +21,7 @@ aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
 # Clean up the container. On CircleCI the FS is BTRFS, so this might fail...
 echo "Stopping and restarting..."
 docker stop $ID && docker rm $ID || true
-ID=$(docker run -d -p8000:8000 dwmkerr/dynamodb)
+ID=$(docker run -d -p 8000:8000 dwmkerr/dynamodb)
 sleep 2
 
 # List the tables - there shouldn't be any!

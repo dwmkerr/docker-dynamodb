@@ -54,6 +54,10 @@ The makefile contains commands to build, test and deploy. Parameters can be pass
 
 The tests are simple bash scripts which check for basic capabilties *which relate to the image*. This means they're not there to make sure DynamoDB Local works, they're there to make sure the docker features work with the image. For eample, mounting a volume to provide a persistent data directory.
 
+# Continuous Integration
+
+CI is provided currently by Circle. Ensure you provide AWS credentials as we are using the AWS CLI (they are not used, but the CLI still checks that they are present).
+
 # Contributing
 
 Please help out! Here are some areas I'd like to improve upon:

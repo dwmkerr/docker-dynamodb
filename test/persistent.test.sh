@@ -41,7 +41,7 @@ fi
 # Clean up the container. On CircleCI the FS is BTRFS, so this might fail...
 echo "Stopping and restarting..."
 docker stop $ID && docker rm $ID || true
-ID=$(docker run -d -p8000:8000 -v $DATADIR:/data/ dwmkerr/dynamodb -dbPath /data/)
+ID=$(docker run -d -p 8000:8000 -v $DATADIR:/data/ dwmkerr/dynamodb -dbPath /data/)
 sleep 2
 
 # List the tables - there shouldn't be any!
