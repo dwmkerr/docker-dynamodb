@@ -11,19 +11,20 @@ ID=$(docker run -d -p 8000:8000 dwmkerr/dynamodb)
 sleep 2
 
 # Create a table.
-aws dynamodb --endpoint-url http://localhost:8000 \
+aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
 	create-table \
 	--table-name Supervillains \
     --attribute-definitions AttributeName=name,AttributeType=S \
 	--key-schema AttributeName=name,KeyType=HASH \
 	--provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
 
+# Clean up the container. On CircleCI the FS is BTRFS, so this might fail...
 echo "Stopping and restarting..."
-docker stop $ID && docker rm $ID
-ID=$(docker run -d -p8000:8000 dwmkerr/dynamodb)
+docker stop $ID && docker rm $ID || true
+ID=$(docker run -d -p 8000:8000 dwmkerr/dynamodb)
 sleep 2
 
 # List the tables - there shouldn't be any!
-aws dynamodb --endpoint-url http://localhost:8000 \
+aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
     list-tables \
 	| jq '.TableNames | length'

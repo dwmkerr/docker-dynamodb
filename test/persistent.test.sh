@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Bomb if anything fails.
 set -e
 
@@ -13,7 +15,7 @@ ID=$(docker run -d -p 8000:8000 -v $DATADIR:/data/ dwmkerr/dynamodb -dbPath /dat
 sleep 2
 
 # Create a table.
-aws dynamodb --endpoint-url http://localhost:8000 \
+aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
 	create-table \
 	--table-name Supervillains \
     --attribute-definitions AttributeName=name,AttributeType=S \
@@ -21,13 +23,13 @@ aws dynamodb --endpoint-url http://localhost:8000 \
 	--provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
 
 # Add a record.
-aws dynamodb --endpoint-url http://localhost:8000 \
+aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
     put-item \
     --table-name Supervillains \
     --item '{"name": {"S": "The Monarch"} }'
 
 # Assert the count of records.
-COUNT=$(aws dynamodb --endpoint-url http://localhost:8000 \
+COUNT=$(aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
     scan \
     --table-name Supervillains \
     --select 'COUNT' \
@@ -38,13 +40,14 @@ if [ $COUNT -ne "1" ]; then
 	exit 1
 fi
 
+# Clean up the container. On CircleCI the FS is BTRFS, so this might fail...
 echo "Stopping and restarting..."
-docker stop $ID && docker rm $ID
-ID=$(docker run -d -p8000:8000 -v $DATADIR:/data/ dwmkerr/dynamodb -dbPath /data/)
+docker stop $ID && docker rm $ID || true
+ID=$(docker run -d -p 8000:8000 -v $DATADIR:/data/ dwmkerr/dynamodb -dbPath /data/)
 sleep 2
 
 # List the tables - there shouldn't be any!
-VILLAIN_NAME=$(aws dynamodb --endpoint-url http://localhost:8000 \
+VILLAIN_NAME=$(aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
     scan \
     --table-name Supervillains \
     | jq '.Items[0].name.S')
@@ -52,7 +55,7 @@ VILLAIN_NAME=$(aws dynamodb --endpoint-url http://localhost:8000 \
 if [[ "$VILLAIN_NAME" =~ Monarch ]]; then
     echo "Searched for a villain and found $VILLAIN_NAME!"
 else
-    echo "Searched foud 'Monarch' but found $VILLAIN_NAME, failing test."
+    echo "Searched for 'Monarch' but found $VILLAIN_NAME, failing test."
     exit 1
 fi
 

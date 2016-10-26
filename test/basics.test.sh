@@ -11,5 +11,7 @@ ID=$(docker run -d -p 8000:8000 dwmkerr/dynamodb)
 sleep 2
 http :8000/shell
 echo "Successfully pinged the dynamodb shell!"
-docker stop $ID && docker rm $ID
+
+# Clean up the container. On CircleCI the FS is BTRFS, so this might fail...
+docker stop $ID && docker rm $ID || true
 
