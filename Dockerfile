@@ -12,7 +12,7 @@
 FROM openjdk:7
 
 # Some metadata.
-MAINTAINER Dave Kerr, github.com/dwmkerr
+MAINTAINER Dave Kerr <github.com/dwmkerr>
 
 # Create our main application folder.
 RUN mkdir -p opt/dynamodb
