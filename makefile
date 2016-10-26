@@ -20,7 +20,7 @@ deploy:
 ifndef BUILD_NUM
 	$(warning No build number is defined, skipping push of build number tag.)
 else
-	docker push dwmkerr/dynamodb:$(BUILD_NUM) .	
+	docker push dwmkerr/dynamodb:$(BUILD_NUM)
 endif
 
 # Make sure the makefile knows the commands below are commands, not targets.
