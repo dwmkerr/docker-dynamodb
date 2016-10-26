@@ -4,22 +4,23 @@ Run DynamoDB locally with Docker:
 
 ```bash
 docker run -p 8000:8000 dwmkerr/dynamodb
+open http://localhost:8000/shell
 ```
 
-Any arguments you pass go straight to DynamoDB, which means you can use all of the commandline parameters in the [DynamoDB Documentation](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html).
+![DynamoDB Local Shell](assets/banner.jpg)
+
+This container has full support for all of the commandline parameters in the [DynamoDB Documentation](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html).
 
 
 # Instructions
 
-Basic operation, default parameters. Runs in memory on port 8000:
+To run an ephemeral instance of DynamoDB:
 
 ```bash
 docker run -p 8000:8000 dwmkerr/dynamodb
 ```
 
-DynamoDB is now running on port 8000, check [localhost:8000/shell](http://localhost:8000) to see the shell.
-
-If you want to have persistent data, just mount a volume from your host:
+If you want to have persistent data, just mount a volume from your host and set it as a data directory for DynamoDB:
 
 ```bash
 docker run -v /data:/data -p 8000:8000 dwmkerr/dynamodb -dbPath /data
