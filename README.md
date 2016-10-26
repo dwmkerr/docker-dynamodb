@@ -7,7 +7,7 @@ docker run -p 8000:8000 dwmkerr/dynamodb
 open http://localhost:8000/shell
 ```
 
-![DynamoDB Local Shell](assets/banner.jpg)
+<img src="assets/banner.jpg" width="1024" alt="DynamoDB Local Shell Screenshot">
 
 This container has full support for all of the commandline parameters in the [DynamoDB Documentation](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html).
 
