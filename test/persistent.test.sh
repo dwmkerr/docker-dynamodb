@@ -13,6 +13,7 @@ ID=$(docker run -d -p 8000:8000 -v $DATADIR:/data/ dwmkerr/dynamodb -dbPath /dat
 sleep 2
 
 # Create a table.
+AWS_DEFAULT_REGION=us-west-1
 aws dynamodb --endpoint-url http://localhost:8000 \
 	create-table \
 	--table-name Supervillains \
