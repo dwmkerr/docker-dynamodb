@@ -15,7 +15,7 @@ test: build
 	./test/persistent.test.sh
 
 # Deploy the images to the Docker Hub. Assumes you are logged in!
-deploy: test
+deploy: 
 	docker push dwmkerr/dynamodb:latest
 ifndef BUILD_NUM
 	$(warning No build number is defined, skipping push of build number tag.)
