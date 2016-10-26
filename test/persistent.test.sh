@@ -13,8 +13,7 @@ ID=$(docker run -d -p 8000:8000 -v $DATADIR:/data/ dwmkerr/dynamodb -dbPath /dat
 sleep 2
 
 # Create a table.
-AWS_DEFAULT_REGION=us-west-1
-aws dynamodb --endpoint-url http://localhost:8000 \
+aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
 	create-table \
 	--table-name Supervillains \
     --attribute-definitions AttributeName=name,AttributeType=S \
@@ -22,13 +21,13 @@ aws dynamodb --endpoint-url http://localhost:8000 \
 	--provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
 
 # Add a record.
-aws dynamodb --endpoint-url http://localhost:8000 \
+aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
     put-item \
     --table-name Supervillains \
     --item '{"name": {"S": "The Monarch"} }'
 
 # Assert the count of records.
-COUNT=$(aws dynamodb --endpoint-url http://localhost:8000 \
+COUNT=$(aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
     scan \
     --table-name Supervillains \
     --select 'COUNT' \
@@ -46,7 +45,7 @@ ID=$(docker run -d -p8000:8000 -v $DATADIR:/data/ dwmkerr/dynamodb -dbPath /data
 sleep 2
 
 # List the tables - there shouldn't be any!
-VILLAIN_NAME=$(aws dynamodb --endpoint-url http://localhost:8000 \
+VILLAIN_NAME=$(aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
     scan \
     --table-name Supervillains \
     | jq '.Items[0].name.S')
