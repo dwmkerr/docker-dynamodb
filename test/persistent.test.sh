@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Bomb if anything fails.
 set -e
 
@@ -53,7 +55,7 @@ VILLAIN_NAME=$(aws dynamodb --endpoint-url http://localhost:8000 --region us-eas
 if [[ "$VILLAIN_NAME" =~ Monarch ]]; then
     echo "Searched for a villain and found $VILLAIN_NAME!"
 else
-    echo "Searched foud 'Monarch' but found $VILLAIN_NAME, failing test."
+    echo "Searched for 'Monarch' but found $VILLAIN_NAME, failing test."
     exit 1
 fi
 
