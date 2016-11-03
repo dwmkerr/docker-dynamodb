@@ -25,6 +25,10 @@ ID=$(docker run -d -p 8000:8000 dwmkerr/dynamodb)
 sleep 2
 
 # List the tables - there shouldn't be any!
-aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
+COUNT=$(aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
     list-tables \
-	| jq '.TableNames | length'
+	| jq '.TableNames | length')
+if [ $COUNT -ne "0" ]; then
+    echo "Expeced to find no tables, found $COUNT..."
+	exit 1
+fi
