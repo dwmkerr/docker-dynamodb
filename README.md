@@ -28,6 +28,8 @@ If you want to have persistent data, just mount a volume from your host and set 
 docker run -v /data:/data -p 8000:8000 dwmkerr/dynamodb -dbPath /data
 ```
 
+If you want to access tables and data created by the AWS CLI through a language SDK (Node, Java, etc), you will want to use the  `sharedDb` option [as described in this AWS forum post](https://forums.aws.amazon.com/thread.jspa?messageID=717048).
+
 # Coding
 
 The code is structued like this:
