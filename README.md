@@ -1,4 +1,4 @@
-# docker-dynamodb [![CircleCI](https://circleci.com/gh/dwmkerr/docker-dynamodb.svg?style=svg)](https://circleci.com/gh/dwmkerr/docker-dynamodb) [![ImageLayers Badge](https://badge.imagelayers.io/dwmkerr/dynamodb:latest.svg)](https://imagelayers.io/?images=dwmkerr/dynamodb:latest 'Get your own badge on imagelayers.io')
+# docker-dynamodb [![CircleCI](https://circleci.com/gh/dwmkerr/docker-dynamodb.svg?style=shield)](https://circleci.com/gh/dwmkerr/docker-dynamodb) [![ImageLayers Badge](https://badge.imagelayers.io/dwmkerr/dynamodb:latest.svg)](https://imagelayers.io/?images=dwmkerr/dynamodb:latest 'Get your own badge on imagelayers.io')
 
 [![Docker Hub Badge](http://dockeri.co/image/dwmkerr/dynamodb)](https://registry.hub.docker.com/u/dwmkerr/dynamodb/)
 
