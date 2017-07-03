@@ -62,7 +62,7 @@ The makefile contains commands to build, test and deploy. Parameters can be pass
 
 ## The Tests
 
-The tests are simple bash scripts which check for basic capabilties *which relate to the image*. This means they're not there to make sure DynamoDB Local works, they're there to make sure the docker features work with the image. For eample, mounting a volume to provide a persistent data directory.
+The tests are simple bash scripts which check for basic capabilties *which relate to the image*. This means they're not there to make sure DynamoDB Local works, they're there to make sure the docker features work with the image. For example, mounting a volume to provide a persistent data directory.
 
 # Continuous Integration
 
