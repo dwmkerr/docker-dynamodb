@@ -68,6 +68,17 @@ The tests are simple bash scripts which check for basic capabilties *which relat
 
 CI is provided currently by Circle. Ensure you provide AWS credentials as we are using the AWS CLI (they are not used, but the CLI still checks that they are present).
 
+# Samples
+
+## Generating an Image with Test Data
+
+A basic sample showing how to build an image with custom test data is at [`./samples/test-data`](./samples/test-data).
+
+1. Go to the sample: `cd ./samples/test-data`
+2. Create some sample data: `make create-test-data`. This creates sample data files at `./data`.
+3. Build a new docker image called `sample-test-data`, with `make build`.
+4. The newly created image has the test data built in. Verify with `make test`.
+
 # Contributing
 
 Please help out! Here are some areas I'd like to improve upon:
