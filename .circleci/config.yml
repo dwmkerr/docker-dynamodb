@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/node:8.5
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 17.05.0-ce
+          docker_layer_caching: true
+      - run: make test
+  deploy:
+    docker:
+      - image: circleci/node:8.5
+    environment:
+      BUILD_NUM: $CIRCLE_BUILD_NUM
+    steps:
+      - run: make deploy
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
