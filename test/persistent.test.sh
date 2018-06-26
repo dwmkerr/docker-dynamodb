@@ -46,7 +46,8 @@ docker stop $ID && docker rm $ID || true
 ID=$(docker run -d -p 8000:8000 -v $DATADIR:/data/ dwmkerr/dynamodb -dbPath /data/)
 sleep 2
 
-# List the tables - there shouldn't be any!
+# Search for the record we created before, if the persistence has worked we
+# should find it.
 VILLAIN_NAME=$(aws dynamodb --endpoint-url http://localhost:8000 --region us-east-1 \
     scan \
     --table-name Supervillains \
