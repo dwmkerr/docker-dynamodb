@@ -5,6 +5,7 @@ jobs:
       - image: circleci/node:8.5
     steps:
       - checkout
+      - apt-get update && apt-get install httpie jq 
       - setup_remote_docker:
           version: 17.05.0-ce
           docker_layer_caching: true
