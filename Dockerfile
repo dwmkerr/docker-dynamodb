@@ -19,7 +19,8 @@ RUN mkdir -p opt/dynamodb
 WORKDIR /opt/dynamodb
 
 # Download and unpack dynamodb.
-RUN wget http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz -q -O - | tar -xz
+# Links are from: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html
+RUN wget https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz -q -O - | tar -xz
   
 # The entrypoint is the dynamodb jar. Default port is 8000.
 EXPOSE 8000
