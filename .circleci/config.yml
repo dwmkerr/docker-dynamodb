@@ -1,17 +1,16 @@
 version: 2
 jobs:
+  build:
+jobs:
   test:
-    docker:
-      - image: circleci/node:8.5
+    machine:
+      docker_layer_caching: true
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 17.05.0-ce
-          docker_layer_caching: true
       - run: make test
   deploy:
-    docker:
-      - image: circleci/node:8.5
+    machine:
+      docker_layer_caching: true    # default - false
     environment:
       BUILD_NUM: $CIRCLE_BUILD_NUM
     steps:
