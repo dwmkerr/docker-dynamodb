@@ -6,6 +6,7 @@ jobs:
       docker_layer_caching: true
     steps:
       - checkout
+      - run: sudo apt-get install httpie jq -y
       - run: make test
   deploy:
     machine:
