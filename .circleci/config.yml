@@ -1,6 +1,5 @@
 version: 2
 jobs:
-  build:
 jobs:
   test:
     machine:
@@ -20,7 +19,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+      - test
       - deploy:
           requires:
             - test
