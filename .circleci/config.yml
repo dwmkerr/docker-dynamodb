@@ -10,10 +10,11 @@ jobs:
       - run: make test
   deploy:
     machine:
-      docker_layer_caching: true    # default - false
+      docker_layer_caching: true
     environment:
       BUILD_NUM: $CIRCLE_BUILD_NUM
     steps:
+      - run: docker login -e $DOCKER_EMAIL -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - run: make deploy
 
 workflows:
