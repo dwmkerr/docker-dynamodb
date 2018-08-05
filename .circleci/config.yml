@@ -1,0 +1,30 @@
+version: 2
+jobs:
+jobs:
+  test:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run: sudo apt-get update && sudo apt-get install httpie jq -y
+      - run: make test
+  deploy:
+    machine:
+      docker_layer_caching: true
+    environment:
+      BUILD_NUM: $CIRCLE_BUILD_NUM
+    steps:
+      - run: docker login -e $DOCKER_EMAIL -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: make deploy
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
