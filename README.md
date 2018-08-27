@@ -13,6 +13,11 @@ open http://localhost:8000/shell
 
 This container has full support for all of the commandline parameters in the [DynamoDB Documentation](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html).
 
+Note - there is now an Official AWS Docker Image for DynamoDB:
+
+ - [AWS Blog: Use Amazon DynamoDB Local More Easily with the New Docker Image](https://aws.amazon.com/about-aws/whats-new/2018/08/use-amazon-dynamodb-local-more-easily-with-the-new-docker-image/)
+ - [Docker Hub: DynamoDB](https://hub.docker.com/r/amazon/dynamodb-local/)
+
 
 # Instructions
 
