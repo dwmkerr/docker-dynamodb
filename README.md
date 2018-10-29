@@ -55,6 +55,13 @@ tests/         # bash scripts to test how the container works
 
 The Dockerfile is based on [OpenJDK](https://hub.docker.com/_/openjdk/) and essentially just runs a jar file in a JRSE 7 environment.
 
+When building the image, it will expect to have the desired dynamodb version set with a build argument of "DYNAMODB_VERSION".
+Example:
+```bash
+docker build --build-arg DYNAMODB_VERSION=latest .
+```
+
+
 ## The Makefile
 
 The makefile contains commands to build, test and deploy. Parameters can be passed as environment variables or through the commandline.
