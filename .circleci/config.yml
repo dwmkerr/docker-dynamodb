@@ -1,6 +1,5 @@
 version: 2
 jobs:
-jobs:
   test:
     machine:
       docker_layer_caching: true
