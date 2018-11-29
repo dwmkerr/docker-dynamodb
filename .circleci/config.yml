@@ -1,22 +1,19 @@
 version: 2
 jobs:
   test:
-    docker:
-      - image: circleci/node:8.5
+    machine:
+      docker_layer_caching: true
     steps:
       - checkout
-      - run: sudo apt-get update && sudo apt-get install -y httpie jq 
-      - setup_remote_docker:
-          version: 17.05.0-ce
-          docker_layer_caching: true
+      - run: sudo apt-get update && sudo apt-get install httpie jq -y
       - run: make test
   deploy:
-    docker:
-      - image: circleci/node:8.5
+    machine:
+      docker_layer_caching: true
     environment:
       BUILD_NUM: $CIRCLE_BUILD_NUM
-      DOCKER_EMAIL: $DOCKER_EMAIL
     steps:
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - run: make deploy
 
 workflows:
