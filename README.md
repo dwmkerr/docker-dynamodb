@@ -19,6 +19,21 @@ Note - there is now an Official AWS Docker Image for DynamoDB:
  - [Docker Hub: DynamoDB](https://hub.docker.com/r/amazon/dynamodb-local/)
 
 
+<!-- vim-markdown-toc GFM -->
+
+* [Instructions](#instructions)
+* [Coding](#coding)
+    * [The Dockerfile](#the-dockerfile)
+    * [The Makefile](#the-makefile)
+    * [The Tests](#the-tests)
+* [Continuous Integration](#continuous-integration)
+* [Samples](#samples)
+    * [Generating an Image with Test Data](#generating-an-image-with-test-data)
+    * [Connecting an AWS Lambda Function against a local Database](#connecting-an-aws-lambda-function-against-a-local-database)
+* [Contributing](#contributing)
+
+<!-- vim-markdown-toc -->
+
 # Instructions
 
 To run an ephemeral instance of DynamoDB:
@@ -83,6 +98,12 @@ A basic sample showing how to build an image with custom test data is at [`./sam
 2. Create some sample data: `make create-test-data`. This creates sample data files at `./data`.
 3. Build a new docker image called `sample-test-data`, with `make build`.
 4. The newly created image has the test data built in. Verify with `make test`.
+
+## Connecting an AWS Lambda Function against a local Database
+
+There's a great blog post on this here:
+
+https://thebitmuncher.home.blog/2019/03/01/how-to-connect-to-local-dynamodb-on-docker-from-local-aws-sam-lambda-node-js-function/
 
 # Contributing
 
