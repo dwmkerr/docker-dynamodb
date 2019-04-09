@@ -58,7 +58,7 @@ Without this option, each connection will get is own database and the data will 
 
 # Coding
 
-The code is structued like this:
+The code is structured like this:
 
 ```
 Dockerfile     # the important thing, the actual dockerfile
