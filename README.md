@@ -32,6 +32,7 @@ Note - there is now an Official AWS Docker Image for DynamoDB:
 * [Samples](#samples)
     * [Generating an Image with Test Data](#generating-an-image-with-test-data)
     * [Connecting an AWS Lambda Function against a local Database](#connecting-an-aws-lambda-function-against-a-local-database)
+* [Troubleshooting](#troubleshooting)
 * [Contributing](#contributing)
 
 <!-- vim-markdown-toc -->
@@ -106,6 +107,44 @@ A basic sample showing how to build an image with custom test data is at [`./sam
 There's a great blog post on this here:
 
 https://thebitmuncher.home.blog/2019/03/01/how-to-connect-to-local-dynamodb-on-docker-from-local-aws-sam-lambda-node-js-function/
+
+# Troubleshooting
+
+**Missing required key 'ProvisionedThroughput' in params Unexpected key 'BillingMode' found in params**
+
+The issue is the underlying DynamoDB Local jar provided by AWS requires read and write capacity units to be specified (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html).
+
+Provisioned throughput settings are ignored in downloadable DynamoDB, even though the CreateTable operation requires them. For CreateTable, you can specify any numbers you want for provisioned read and write throughput, even though these numbers are not used. You can call UpdateTable as many times as you want per day. However, any changes to provisioned throughput values are ignored.
+
+Here is an example CreateTable call which will work:
+
+```js
+// Note we have to specify ProvisionedThroughput, but it will not be used.
+var params = {
+    TableName: 'table',
+    ProvisionedThroughput: {
+        ReadCapacityUnits: 1,
+        WriteCapacityUnits: 1
+    },
+    KeySchema: [
+        {
+            AttributeName: 'id',
+            KeyType: 'HASH',
+        }
+    ],
+    AttributeDefinitions: [
+        {
+            AttributeName: 'id',
+            AttributeType: 'S',
+        }
+    ],
+};
+dynamodb.createTable(params, function(err, data) {
+    if (err) ppJson(err); // an error occurred
+    else ppJson(data); // successful response
+
+});
+```
 
 # Contributing
 
