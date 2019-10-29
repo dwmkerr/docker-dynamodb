@@ -1,11 +1,12 @@
 # Create the docker images locally. If a BUILD_NUM is provided, we will also
 # create an image with the tag BUILD_NUM.
+# Specify a specific dynamodb version by changing the DYNAMODB_VERSION=latest build flag as desired
 build:
-	docker build -t dwmkerr/dynamodb:latest .
+	docker build -t dwmkerr/dynamodb:latest --build-arg DYNAMODB_VERSION=latest .
 ifndef BUILD_NUM
 	$(warning No build number is defined, skipping build number tag.)
 else
-	docker build -t dwmkerr/dynamodb:$(BUILD_NUM) .	
+	docker build -t dwmkerr/dynamodb:$(BUILD_NUM) --build-arg DYNAMODB_VERSION=latest .	
 endif
 
 # Run the tests. These do things like kill containers, so run with caution.
