@@ -7,9 +7,9 @@
 # for details on how to run DynamoDB locally. This Dockerfile essentially
 # replicates those instructions.
 
-# Use JDK 7. I tried alpine, but all calls to dynamo then fail silently...
-# FROM openjdk:7-jre-alpine
-FROM openjdk:7
+# Use JDK 8. I tried alpine, but all calls to dynamo then fail silently...
+# FROM openjdk:8-jre-alpine
+FROM openjdk:8
 
 # Some metadata.
 MAINTAINER Dave Kerr <github.com/dwmkerr>
